@@ -10,8 +10,5 @@ const components: any[] = [DashboardComponent, NavbarComponent];
   standalone: true,
   imports: [RouterOutlet, ...components],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'myAngularProject';
-}
+export class AppComponent {}
