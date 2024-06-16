@@ -1,18 +1,5 @@
-<div cdkDropListGroup>
-  <div class="task-container">
-    <span>To do</span>
-    <div cdkDropList [cdkDropListData]="todo" class="task-list" (cdkDropListDropped)="drop($event)">
-      @for (item of todo; track item) {
-        <div class="task-box" cdkDrag>{{item.title}}</div>
-      }
-    </div>
-  </div>
-  <div class="task-container">
-    <span>Done</span>
-    <div cdkDropList [cdkDropListData]="done" class="task-list" (cdkDropListDropped)="drop($event)">
-      @for (item of done; track item) {
-        <div class="task-box" cdkDrag>{{item.title}}</div>
-      }
-    </div>
-  </div>
+<div class="task-boundary">
+  @for (node of nodes; track node) {
+    <app-node [node]="node"></app-node>
+  }
 </div>
