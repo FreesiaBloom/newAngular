@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { NodeItem } from '../../interfaces/node-item.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,7 +27,7 @@ const materialComponents: any[] = [
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
   public nodes: NodeItem[] = [];
   public nodes$: Observable<NodeItem[]> = inject(Store).select(
     NodeState.getNodes

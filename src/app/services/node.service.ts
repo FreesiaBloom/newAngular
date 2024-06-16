@@ -7,8 +7,6 @@ import { nodes } from '../const/nodes.const';
   providedIn: 'root',
 })
 export class NodeService {
-  constructor() {}
-
   public getAllNodes(): Observable<NodeItem[]> {
     return of(nodes);
   }

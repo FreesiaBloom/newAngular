@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormField } from '../../interfaces/node-item.interface';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -19,7 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './node-form.component.html',
   styleUrl: './node-form.component.scss',
 })
-export class NodeFormComponent {
+export class NodeFormComponent implements OnInit {
   @Input() public formFields: FormField[] = [];
 
   public form: FormGroup;
