@@ -1,5 +1,9 @@
 <div class="task-boundary">
-  @for (node of nodes; track node) {
-    <app-node [node]="node"></app-node>
-  }
+  <mat-grid-list cols="2" rowHeight="2:1">
+    @for (node of nodes; track node) {
+      <mat-grid-tile>
+        <app-node [node]="node"></app-node>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
 </div>

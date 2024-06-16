@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NodeComponent } from './node.component';
+import { TypePipe } from '../../pipes/type.pipe';
+import { NodeFormComponent } from '../node-form/node-form.component';
 
 describe('NodeComponent', () => {
   let component: NodeComponent;
@@ -8,7 +10,7 @@ describe('NodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NodeComponent]
+      imports: [NodeComponent, NodeFormComponent, TypePipe]
     })
     .compileComponents();
 

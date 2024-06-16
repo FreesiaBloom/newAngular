@@ -1,3 +1,5 @@
 <div class="task-box" cdkDragBoundary=".task-boundary" cdkDrag>
-  {{node.title}}
+  <span>{{ node.type | type}}</span>
+  <app-node-form [formFields]="node.formFields"></app-node-form>
 </div>
+
