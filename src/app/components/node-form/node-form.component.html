@@ -1,20 +1,23 @@
 <form [formGroup]="form">
   @for (field of formFields; track field) {
     <label>{{ field.label }}</label>
-    @switch (field.type) {
-      @case ('text') {
-        <input [formControlName]="field.name" [id]="field.name" [placeholder]="field.placeholder">
-      }
-      @case ('textarea') {
-        <textarea [name]="field.name" [id]="field.name" [placeholder]="field.placeholder"></textarea>
-      }
-      @case ('select') {
-        <select [name]="field.name" [id]="field.name">
-          @for (option of field.options; track $index) {
+    <div>
+      @switch (field.type) {
+        @case ('text') {
+          <input [formControlName]="field.name" [id]="field.name" [placeholder]="field.placeholder">
+        }
+        @case ('textarea') {
+          <textarea [name]="field.name" [id]="field.name" [placeholder]="field.placeholder"></textarea>
+        }
+        @case ('select') {
+          <select [name]="field.name" [id]="field.name">
+            @for (option of field.options; track $index) {
             <option [value]="option">{{ option }}</option>
-          }
-        </select>
+            }
+          </select>
+        }
       }
-    }
+
+    </div>
   }
 </form>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NodeType } from '../components/enums/node-type.enum';
+import { NodeType } from '../enums/node-type.enum';
 
 @Pipe({
   name: 'type',

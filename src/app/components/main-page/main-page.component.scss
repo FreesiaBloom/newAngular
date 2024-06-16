@@ -1,8 +1,12 @@
-
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .task-boundary {
   width: 940px;
-  height: 940px;
+  height: 1200px;
   max-width: 100%;
   border: dotted #ccc 2px;
 }

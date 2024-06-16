@@ -1,4 +1,4 @@
-import { NodeType } from '../components/enums/node-type.enum';
+import { NodeType } from '../enums/node-type.enum';
 import { TypePipe } from './type.pipe';
 
 describe('TypePipe', () => {

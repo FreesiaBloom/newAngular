@@ -1,11 +1,19 @@
-<button mat-button (click)="addNewNode()">Add</button>
-
-<div class="task-boundary">
-  <mat-grid-list cols="2" rowHeight="2:1">
-    @for (node of nodes; track node) {
-    <mat-grid-tile>
-      <app-node [node]="node"></app-node>
-    </mat-grid-tile>
-    }
-  </mat-grid-list>
+<div class="header">
+  <app-add-new-node></app-add-new-node>
+  <button mat-raised-button class="add-button">
+    <mat-icon>delete</mat-icon>
+    Clear all selections
+  </button>
 </div>
+
+@if(!!nodes) {
+  <div class="task-boundary">
+    <mat-grid-list cols="2" rowHeight="1:1">
+      @for (node of nodes ; track node) {
+      <mat-grid-tile>
+        <app-node [node]="node"></app-node>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
+}

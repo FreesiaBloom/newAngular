@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NodeComponent } from './node.component';
+import { NodeComponent } from './NodeComponent';
 import { TypePipe } from '../../pipes/type.pipe';
 import { NodeFormComponent } from '../node-form/node-form.component';
 

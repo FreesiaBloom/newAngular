@@ -1,0 +1,21 @@
+<span>Add new node</span>
+<form [formGroup]="form" (submit)="onAdd()">
+  <mat-form-field name="name" class="add-name">
+    <mat-label>Write name</mat-label>
+    <input type="text" matInput name="title" formControlName="titleFormControl">
+  </mat-form-field>
+
+  <mat-form-field name="select">
+    <mat-label>Select Type</mat-label>
+    <mat-select name="select" formControlName="selectedTypeFormControl">
+        <mat-option [value]="nodeType.TYPE_ONE">{{nodeType.TYPE_ONE | type}}</mat-option>
+        <mat-option [value]="nodeType.TYPE_TWO">{{nodeType.TYPE_TWO | type}}</mat-option>
+        <mat-option [value]="nodeType.TYPE_THREE">{{nodeType.TYPE_THREE | type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button class="add-button">
+    <mat-icon>add</mat-icon>
+    Add
+  </button>
+</form>

@@ -1,21 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { NodeItem } from '../../interfaces/node-item.interface';
-import { NodeComponent } from '../node/node.component';
-import { v4 as uuidv4 } from 'uuid';
-import { NodeType } from '../enums/node-type.enum';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ClearSelection, GetAllNodes, NodeState } from '../../store/node.state';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { AddNewNodeComponent } from '../add-new-node/add-new-node.component';
+import { NodeComponent } from '../node/node.component';
+import { MatIconModule } from '@angular/material/icon';
 
-const components: any[] = [NodeComponent];
+const components: any[] = [AddNewNodeComponent, NodeComponent];
 const materialComponents: any[] = [
   CdkDrag,
   MatGridListModule,
   MatExpansionModule,
   MatButtonModule,
-  MatIconModule,
+  MatIconModule
 ];
 
 @Component({
@@ -27,118 +29,22 @@ const materialComponents: any[] = [
 })
 export class MainPageComponent {
   public nodes: NodeItem[] = [];
+  public nodes$: Observable<NodeItem[]> = inject(Store).select(
+    NodeState.getNodes
+  );
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.populateNodes();
-  }
-
-  public addNewNode() {
-    this.nodes.push({
-      id: uuidv4(),
-      type: NodeType.TYPE_ONE,
-      formFields: [
-        {
-          type: 'text',
-          label: 'name',
-          name: 'name',
-          placeholder: 'Write text here',
-        },
-        {
-          type: 'text',
-          label: 'input 1',
-          name: 'input 1',
-          placeholder: 'Write text here',
-        },
-        {
-          type: 'text',
-          label: 'input 2',
-          name: 'input 2',
-          placeholder: 'Write text here',
-        },
-      ],
+    this.nodes$.subscribe({
+      next: (nodes: NodeItem[]) => {
+        this.store.dispatch(new GetAllNodes());
+        this.nodes = nodes;
+      },
     });
   }
 
-  private populateNodes() {
-    this.nodes = [
-      {
-        id: uuidv4(),
-        type: NodeType.TYPE_ONE,
-        formFields: [
-          {
-            type: 'text',
-            label: 'name',
-            name: 'name',
-            placeholder: 'Write text here',
-          },
-          {
-            type: 'text',
-            label: 'input 1',
-            name: 'input 1',
-            placeholder: 'Write text here',
-          },
-          {
-            type: 'text',
-            label: 'input 2',
-            name: 'input 2',
-            placeholder: 'Write text here',
-          },
-        ],
-      },
-      {
-        id: uuidv4(),
-        type: NodeType.TYPE_TWO,
-        formFields: [
-          {
-            type: 'text',
-            label: 'name',
-            name: 'name',
-            placeholder: 'Write text here',
-          },
-          {
-            type: 'textarea',
-            label: 'input 7',
-            name: 'input 7',
-            placeholder: 'Write text here',
-          },
-        ],
-      },
-      {
-        id: uuidv4(),
-        type: NodeType.TYPE_ONE,
-        formFields: [
-          {
-            type: 'text',
-            label: 'name',
-            name: 'name',
-            placeholder: 'Write text here',
-          },
-          {
-            type: 'text',
-            label: 'input 1',
-            name: 'input 1',
-            placeholder: 'Write text here',
-          },
-          {
-            type: 'text',
-            label: 'input 2',
-            name: 'input 2',
-            placeholder: 'Write text here',
-          },
-        ],
-      },
-      {
-        id: uuidv4(),
-        type: NodeType.TYPE_THREE,
-        formFields: [
-          {
-            type: 'select',
-            label: 'input 3',
-            name: 'input 3',
-            options: ['one', 'two', 'three'],
-          },
-        ],
-      },
-    ];
+  public clearSelection(): void {
+    this.store.dispatch(new ClearSelection());
   }
 }

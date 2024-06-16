@@ -1,5 +1,10 @@
 <div class="task-box" cdkDragBoundary=".task-boundary" cdkDrag>
-  <span>{{ node.type | type}}</span>
+  <h5>{{ node.type | type}}
+    <span>
+      <mat-icon [class]="{'typeOne': node.type === nodeType.TYPE_ONE, 'typeTwo': node.type === nodeType.TYPE_TWO, 'typeThree': node.type === nodeType.TYPE_THREE}">favorite</mat-icon>
+    </span>
+  </h5>
+  <p>Name: {{ node.title }}</p>
   <app-node-form [formFields]="node.formFields"></app-node-form>
+  <button mat-button (click)="connect()" class="connect-button">Connect</button>
 </div>
-

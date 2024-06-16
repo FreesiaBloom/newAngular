@@ -1,7 +1,8 @@
-import { NodeType } from "../components/enums/node-type.enum";
+import { NodeType } from "../enums/node-type.enum";
 
 export interface NodeItem {
   id: string;
+  title: string
   type: NodeType;
   formFields: FormField[];
 }
