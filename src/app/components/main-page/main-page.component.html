@@ -5,11 +5,10 @@
     Clear all selections
   </button>
 </div>
-
-@if(!!nodes) {
+@if(nodes$ | async) {
   <div class="task-boundary">
     <mat-grid-list cols="2" rowHeight="1:1">
-      @for (node of nodes ; track node) {
+      @for (node of nodes$ | async ; track node) {
       <mat-grid-tile>
         <app-node [node]="node"></app-node>
       </mat-grid-tile>
@@ -17,3 +16,4 @@
     </mat-grid-list>
   </div>
 }
+

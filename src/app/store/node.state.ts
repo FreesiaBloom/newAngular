@@ -1,12 +1,12 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, mergeMap, tap } from 'rxjs';
 import { NodeItem } from '../interfaces/node-item.interface';
 import { Injectable } from '@angular/core';
 import { NodeService } from '../services/node.service';
 import { nodes } from '../const/nodes.const';
 
 export class GetAllNodes {
-  static readonly type = '[Node] Get All';
+  static readonly type = '[Node] GetAll';
 }
 
 export class AddNode {
@@ -36,7 +36,7 @@ export interface NodeStateModel {
 @State<NodeStateModel>({
   name: 'Node',
   defaults: {
-    nodes: nodes,
+    nodes: [],
     selectedNodes: []
   },
 })
@@ -70,7 +70,6 @@ export class NodeState {
   @Action(AddNode)
   addNode(ctx: StateContext<NodeStateModel>, action: AddNode) {
     const state = ctx.getState();
-    console.log(state, action.payload);
     ctx.setState({
       ...state,
       nodes: [...state.nodes, action.payload]

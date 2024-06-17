@@ -58,7 +58,7 @@ export class AddNewNodeComponent {
       this.store.dispatch(
         new AddNode(generateNewNode(selectedType, title))
       );
-      this.store.dispatch(new GetAllNodes());
+      // this.store.dispatch(new GetAllNodes());
     }
   }
 }

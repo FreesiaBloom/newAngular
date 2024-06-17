@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { NodeItem } from '../../interfaces/node-item.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -10,8 +10,9 @@ import { Store } from '@ngxs/store';
 import { AddNewNodeComponent } from '../add-new-node/add-new-node.component';
 import { NodeComponent } from '../node/node.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
-const components: any[] = [AddNewNodeComponent, NodeComponent];
+const components: any[] = [AddNewNodeComponent, NodeComponent, CommonModule ];
 const materialComponents: any[] = [
   CdkDrag,
   MatGridListModule,
@@ -26,22 +27,17 @@ const materialComponents: any[] = [
   imports: [...components, ...materialComponents],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent implements OnInit {
-  public nodes: NodeItem[] = [];
   public nodes$: Observable<NodeItem[]> = inject(Store).select(
     NodeState.getNodes
   );
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.nodes$.subscribe({
-      next: (nodes: NodeItem[]) => {
-        this.store.dispatch(new GetAllNodes());
-        this.nodes = nodes;
-      },
-    });
+    this.store.dispatch(new GetAllNodes());
   }
 
   public clearSelection(): void {

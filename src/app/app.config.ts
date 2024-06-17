@@ -10,6 +10,8 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgxsModule } from '@ngxs/store';
 import { NodeState } from './store/node.state';
+// import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+// import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     importProvidersFrom(NgxsModule.forRoot([NodeState])),
+    // importProvidersFrom(NgxsLoggerPluginModule.forRoot()),
+    // importProvidersFrom(NgxsReduxDevtoolsPluginModule.forRoot())
   ],
 };
